@@ -153,10 +153,9 @@
     }
     return true;
   }
-
-  // ---------- Generate UIU ID ----------
+   // ---------- Generate UIU ID ----------
   function generateUIUID(courseValue) {
-    const codeMap = {
+    var codeMap = {
       "Data Analysis (Beginner)": "DA",
       "Data Analysis (Advanced)": "DAP",
       "Research Support": "RS",
@@ -164,10 +163,10 @@
       "ICT Training": "ICT",
       "Business Analytics": "BA"
     };
-    const code = codeMap[courseValue] || "GEN";
-    const random = Math.floor(10000 + Math.random() * 90000);
-    const year = new Date().getFullYear().toString().slice(-2);
-    return `UIU-\( {code}- \){year}${random}`;
+    var code = codeMap[courseValue] || "GEN";
+    var random = Math.floor(10000 + Math.random() * 90000);
+    var year = new Date().getFullYear().toString().slice(-2);
+    return "UIU-" + code + "-" + year + random;
   }
 
   // ---------- Send data to Google Sheet ----------
