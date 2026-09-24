@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ZAKVORA Technologies Limited — Task Verification. Upload your WhatsApp screenshots to get your UIU ID." />
+  <title>Task Verification | ZAKVORA Technologies Limited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="verify.css" />
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="top-bar">
+    ZAKVORA is growing — upcoming Data Analysis Training · Website now live
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="https://zakvoratechnologieslimited-sketch.github.io/zakvora-website/" class="logo">
+        <div class="logo-mark">Z</div>
+        <div class="logo-text">
+          <span class="logo-name">ZAKVORA</span>
+          <span class="logo-sub">TECHNOLOGIES LIMITED</span>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="https://zakvoratechnologieslimited-sketch.github.io/zakvora-website/#home">Home</a>
+        <a href="https://zakvoratechnologieslimited-sketch.github.io/zakvora-website/#about">About</a>
+        <a href="https://zakvoratechnologieslimited-sketch.github.io/zakvora-website/#training">Training</a>
+        <a href="https://zakvoratechnologieslimited-sketch.github.io/zakvora-website/#contact" class="btn-nav">Contact</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="https://zakvoratechnologieslimited-sketch.github.io/zakvora-website/#home">Home</a>
+    <a href="https://zakvoratechnologieslimited-sketch.github.io/zakvora-website/#about">About</a>
+    <a href="https://zakvoratechnologieslimited-sketch.github.io/zakvora-website/#training">Training</a>
+    <a href="https://zakvoratechnologieslimited-sketch.github.io/zakvora-website/#contact">Contact</a>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Task Verification</p>
+        <h1>Upload Your<br><span class="highlight">WhatsApp Screenshots</span></h1>
+        <p class="hero-desc">
+          Share the ZAKVORA message to 5 WhatsApp groups, screenshot each one, then upload them below to get your <strong>UIU ID</strong> instantly.
+        </p>
+      </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+      <div class="container">
+        <form id="verifyForm" novalidate>
+          
+          <!-- YOUR DETAILS -->
+          <div class="card">
+            <div class="card-header">
+              <h2>Your Details</h2>
+              <div class="card-line"></div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group full">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g. Amaka Okonkwo" required />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="e.g. amaka@gmail.com" required />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="e.g. 08012345678" required />
+              </div>
+
+              <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" name="country" required>
+                  <option value="">Select country</option>
+                  <option value="Nigeria" selected>Nigeria</option>
+                  <option value="Ghana">Ghana</option>
+                  <option value="Kenya">Kenya</option>
+                  <option value="South Africa">South Africa</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="United States">United States</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="e.g. Lagos" required />
+              </div>
+            </div>
+          </div>
+
+          <!-- YOUR COURSE -->
+          <div class="card">
+            <div class="card-header">
+              <h2>Your Course</h2>
+              <div class="card-line"></div>
+            </div>
+            <p class="card-sub">Select the track you registered for.</p>
+
+            <div class="course-grid" id="courseGrid">
+              <label class="course-card">
+                <input type="radio" name="course" value="Data Analysis (Beginner)" required />
+                <div class="course-inner">
+                  <span class="course-code">DA</span>
+                  <span class="course-name">Data Analysis</span>
+                  <span class="course-level">Beginner</span>
+                </div>
+              </label>
+
+              <label class="course-card">
+                <input type="radio" name="course" value="Data Analysis (Advanced)" />
+                <div class="course-inner">
+                  <span class="course-code">DA+</span>
+                  <span class="course-name">Data Analysis</span>
+                  <span class="course-level">Advanced</span>
+                </div>
+              </label>
+
+              <label class="course-card">
+                <input type="radio" name="course" value="Research Support" />
+                <div class="course-inner">
+                  <span class="course-code">RS</span>
+                  <span class="course-name">Research Support</span>
+                  <span class="course-level">Academic & Business</span>
+                </div>
+              </label>
+
+              <label class="course-card">
+                <input type="radio" name="course" value="AI & Digital Solutions" />
+                <div class="course-inner">
+                  <span class="course-code">AI</span>
+                  <span class="course-name">AI & Digital</span>
+                  <span class="course-level">Solutions</span>
+                </div>
+              </label>
+
+              <label class="course-card">
+                <input type="radio" name="course" value="ICT Training" />
+                <div class="course-inner">
+                  <span class="course-code">ICT</span>
+                  <span class="course-name">ICT Training</span>
+                  <span class="course-level">Digital Skills</span>
+                </div>
+              </label>
+
+              <label class="course-card">
+                <input type="radio" name="course" value="Business Analytics" />
+                <div class="course-inner">
+                  <span class="course-code">BA</span>
+                  <span class="course-name">Business Analytics</span>
+                  <span class="course-level">Reporting & Insights</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- YOUR SCREENSHOTS -->
+          <div class="card">
+            <div class="card-header">
+              <h2>Your Screenshots</h2>
+              <div class="card-line"></div>
+            </div>
+            <p class="card-sub">
+              Upload one screenshot per WhatsApp group showing the ZAKVORA message you sent. Our system will verify each one.
+            </p>
+
+            <div class="upload-grid" id="uploadGrid">
+              <!-- Generated by JS -->
+            </div>
+
+            <div class="upload-status">
+              <span id="uploadCount">0 of 5 uploaded</span>
+            </div>
+
+            <button type="submit" class="btn-verify" id="verifyBtn" disabled>
+              Verify & Get My UIU ID
+            </button>
+
+            <p class="upload-tip">
+              💡 Make sure the ZAKVORA message and group name are clearly visible in each screenshot. Individual chats will not be accepted — must be a WhatsApp group.
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Loading Overlay -->
+  <div class="overlay" id="loadingOverlay" hidden>
+    <div class="overlay-card">
+      <div class="spinner"></div>
+      <h3>Verifying Screenshots</h3>
+      <p>Checking your screenshots one by one...</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p class="progress-text" id="progressText">0 of 5 verified</p>
+    </div>
+  </div>
+
+  <!-- Success Overlay -->
+  <div class="overlay" id="successOverlay" hidden>
+    <div class="overlay-card success-card">
+      <div class="success-icon">🎉</div>
+      <h2>You're Verified!</h2>
+      <p>All your screenshots passed. Your <strong>UIU ID</strong> is ready — use it to submit assignments and access the full class.</p>
+      
+      <div class="uiu-box">
+        <span class="uiu-label">Your UIU ID</span>
+        <span class="uiu-value" id="uiuId">—</span>
+        <button type="button" class="btn-copy" id="copyBtn">Copy ID</button>
+      </div>
+
+      <p class="email-note">Check your email for full access instructions.</p>
+      <button type="button" class="btn-secondary" id="doneBtn">Done</button>
+    </div>
+  </div>
+
+  <!-- Failure Overlay -->
+  <div class="overlay" id="failOverlay" hidden>
+    <div class="overlay-card fail-card">
+      <div class="fail-icon">⚠️</div>
+      <h2>Some Screenshots Failed</h2>
+      <p>One or more screenshots could not be verified. Please re-upload the failed ones and try again.</p>
+      <button type="button" class="btn-verify" id="tryAgainBtn">Try Again</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 ZAKVORA Technologies Limited. All rights reserved.</p>
+      <p class="footer-links">
+        <a href="https://wa.me/2349073872804" target="_blank">WhatsApp</a> ·
+        <a href="mailto:zakvoratechnologieslimited@gmail.com">Email</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="verify.js"></script>
+</body>
+</html>
