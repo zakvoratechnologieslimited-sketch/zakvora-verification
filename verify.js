@@ -6,7 +6,7 @@
   "use strict";
 
   // ---------- Google Apps Script URL ----------
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwl5MtCEvZyqKMikjs4e7tRbaVxfkwE1TX9ZnltlhkuM40mqcYu9MhWxMlAFH3VBk2Q/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzemxRMxfNhW51T7M_svNDmVDyHGEICiAVC6PKJZcxyoYxuGemraR86OH3UyULvQXfd/exec";
 
   // ---------- Elements ----------
   const form = document.getElementById("verifyForm");
