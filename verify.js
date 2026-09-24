@@ -164,4 +164,105 @@
       "Business Analytics": "BA"
     };
     var code = codeMap[courseValue] || "GEN";
-    var random =
+    var random = Math.floor(10000 + Math.random() * 90000);
+    var year = new Date().getFullYear().toString().slice(-2);
+    return "UIU-" + code + "-" + year + random;
+  }
+
+  // ---------- Send data to Google Sheet ----------
+  function sendToGoogleSheet(formData) {
+    return fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
+  }
+
+  // ---------- Mock verification ----------
+  function runVerification() {
+    loadingOverlay.hidden = false;
+    progressFill.style.width = "0%";
+    progressText.textContent = "0 of 5 verified";
+
+    var current = 0;
+
+    var interval = setInterval(function () {
+      current++;
+      var percent = (current / TOTAL_SLOTS) * 100;
+      progressFill.style.width = percent + "%";
+      progressText.textContent = current + " of " + TOTAL_SLOTS + " verified";
+
+      if (current >= TOTAL_SLOTS) {
+        clearInterval(interval);
+
+        setTimeout(function () {
+          loadingOverlay.hidden = true;
+
+          var course = document.querySelector('input[name="course"]:checked').value;
+          var id = generateUIUID(course);
+          uiuIdEl.textContent = id;
+          successOverlay.hidden = false;
+
+          // Send to Google Sheet
+          var formData = {
+            name: document.getElementById("fullName").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            phone: document.getElementById("phone").value.trim(),
+            country: document.getElementById("country").value,
+            city: document.getElementById("city").value.trim(),
+            course: course,
+            uiuId: id
+          };
+
+          sendToGoogleSheet(formData);
+        }, 600);
+      }
+    }, 700);
+  }
+
+  // ---------- Submit ----------
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!validateForm()) return;
+    runVerification();
+  });
+
+  // ---------- Copy UIU ID ----------
+  copyBtn.addEventListener("click", function () {
+    var id = uiuIdEl.textContent;
+    if (!id || id === "—") return;
+
+    navigator.clipboard.writeText(id).then(function () {
+      copyBtn.textContent = "Copied!";
+      setTimeout(function () {
+        copyBtn.textContent = "Copy ID";
+      }, 1800);
+    }).catch(function () {
+      var temp = document.createElement("textarea");
+      temp.value = id;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      copyBtn.textContent = "Copied!";
+      setTimeout(function () {
+        copyBtn.textContent = "Copy ID";
+      }, 1800);
+    });
+  });
+
+  // ---------- Done / Try Again ----------
+  doneBtn.addEventListener("click", function () {
+    successOverlay.hidden = true;
+  });
+
+  tryAgainBtn.addEventListener("click", function () {
+    failOverlay.hidden = true;
+  });
+
+  // ---------- Init ----------
+  updateCount();
+})();
